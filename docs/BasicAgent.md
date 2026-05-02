@@ -106,4 +106,18 @@ Process finished with exit code 0
 
 In the Phoenix UI you should see a project called `playground-basic-agent` with one Chain trace per run, each containing Agent child spans — one per query.
 
+![basic_agent_01.png](imgs/basic_agent_01.png)
 
+In this case we had many operations and queries, but we only see one chain,
+in `Traces` we can click on the chain and see all the agent calls grouped inside:
+
+![basic_agent_02.png](imgs/basic_agent_02.png)
+
+![basic_agent_03.png](imgs/basic_agent_03.png)
+
+Clicking in the tree, you can see how agents are part of chain, and llms are
+inside of agents, each agent execution has the entire context of the agent
+interaction, if you click on the llm span, you can see the prompt, response and 
+all the metadata.
+
+![basic_agent_04.png](imgs/basic_agent_04.png)
