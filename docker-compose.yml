@@ -1,0 +1,22 @@
+services:
+  phoenix:
+    image: arizephoenix/phoenix:latest # Must be greater than 4.0 version to work
+    depends_on:
+      - db
+    ports:
+      - ${ARIZE_PHOENIX_PORT}:6006  # PHOENIX_PORT
+      - ${ARIZE_PHOENIX_GRPC_PORT}:4317  # PHOENIX_GRPC_PORT
+    environment:
+      - PHOENIX_SQL_DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+  db:
+    image: postgres:17-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - database_data:/var/lib/postgresql/data
+volumes:
+  database_data:
+    driver: local
